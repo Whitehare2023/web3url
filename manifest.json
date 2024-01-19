@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "web3://",
+  "description": "Redirect web3 URLs to their corresponding http gateways.",
+  "version": "1.0",
+  "permissions": [
+    "tabs",
+    "storage"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "128": "icon.png"
+    }
+  },
+  "icons": {
+    "128": "icon.png"
+  },
+  "omnibox": {
+    "keyword": "web3",
+    "suggestion_start": "chain "
+  }
+}
