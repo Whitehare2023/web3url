@@ -32,7 +32,7 @@
 
 ## 贡献
 
-我们欢迎社区成员的贡献和反馈。如果你想贡献代码、提出问题或建议，请访问我们的 GitHub 仓库 [Web3URL](https://github.com/your-repo-link)。
+我们欢迎社区成员的贡献和反馈。如果你想贡献代码、提出问题或建议，请访问我们的 GitHub 仓库 [Web3URL](https://github.com/Whitehare2023/web3url)。
 
 ## 许可证
 
