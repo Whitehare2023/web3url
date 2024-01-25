@@ -1,30 +1,33 @@
-const nets = [
-  { content: "mainnet", description: "use mainnet", id: 1 },
-  { content: "sepolia", description: "use sepolia", id: 11155111 },
-];
+let step = 1;
+let inputText = "";
 
 chrome.runtime.onInstalled.addListener(() => {
   console.log("web3url extension installed and service worker started.");
 });
 
 chrome.omnibox.onInputChanged.addListener(function (text, suggest) {
-  // 设置默认建议，显示在下拉菜单的最上面
-  chrome.omnibox.setDefaultSuggestion({
-    description: "please check net to jump",
-  });
-  // 在建议中包含额外的参数
-  suggest(
-    nets.map(({ content, description }) => ({
-      content: `${content}.${text}`,
-      description,
-    }))
-  );
+  suggest([
+    {
+      content: `${text}`,
+      description: `choose chain when you complete`,
+    },
+  ]);
 });
 
 chrome.omnibox.onInputEntered.addListener((input, disposition) => {
-  const [network, ...extraParam] = input.split(".");
-  const url = extraParam.join(".");
-  let networkId = nets.find(({ content }) => content === network)?.id;
+  inputText = input;
+  chrome.windows.create({
+    url: "popup.html",
+    type: "popup",
+    width: 400,
+    height: 300,
+  });
+});
+
+const jump = (networkId, url) => {
+  // const [networkId, ...extraParam] = input.split(".");
+  // const url = extraParam.join(".");
+  // let networkId = nets.find(({ content }) => content === network)?.id;
   let networkSuffix = `.${networkId}.w3link.io`;
   if (!networkId) {
     chrome.notifications.create({
@@ -49,18 +52,16 @@ chrome.omnibox.onInputEntered.addListener((input, disposition) => {
       otherParams.join("/");
   }
 
-  chrome.tabs.update({ url: newUrl });
-  // if (newUrl) {
-  //   switch (disposition) {
-  //     case "currentTab":
-  //       chrome.tabs.update({ url: newUrl });
-  //       break;
-  //     case "newForegroundTab":
-  //       chrome.tabs.create({ url: newUrl });
-  //       break;
-  //     case "newBackgroundTab":
-  //       chrome.tabs.create({ url: newUrl, active: false });
-  //       break;
-  //   }
-  // }
+  // chrome.tabs.update({ url: newUrl });
+  console.log("newUrl:", newUrl);
+  // 执行创建新标签页的操作
+  chrome.tabs.create({ url: newUrl });
+};
+
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+  console.log("Received value:", request.value);
+  // Process the received value as needed
+  const input = inputText;
+  inputText = "";
+  jump(request.value, input);
 });

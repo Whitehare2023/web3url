@@ -2,9 +2,70 @@
 <html>
   <head>
     <title>web3url Extension</title>
+    <style>
+      .page {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Styles for the dropdown */
+      .custom-dropdown {
+        position: relative;
+        display: inline-block;
+        margin-right: 8px;
+      }
+
+      .custom-dropdown select {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #fff;
+        cursor: pointer;
+        width: 200px;
+        text-align: center;
+      }
+
+      /* Arrow icon for the dropdown */
+      .custom-dropdown::after {
+        content: "\25BC"; /* Unicode character for down arrow */
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+      }
+
+      /* Styles for the button */
+      .custom-button {
+        padding: 10px 20px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #4caf50; /* Green color, you can change it */
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      /* Hover effect for the button */
+      .custom-button:hover {
+        background-color: #45a049; /* Darker green color on hover */
+      }
+    </style>
   </head>
   <body>
-    <h1>web3url Extension</h1>
-    <p>Type 'web3 ' followed by the web3 domain in the omnibox and press enter to redirect.</p>
+    <div class="page">
+      <div class="custom-dropdown">
+        <select id="networkSelect">
+          <!-- Add more options as needed -->
+        </select>
+      </div>
+      <button id="myButton" class="custom-button">Jump</button>
+    </div>
   </body>
+  <script src="script.js"></script>
 </html>
