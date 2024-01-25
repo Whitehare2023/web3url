@@ -30,6 +30,15 @@
 - 插件将自动处理请求，并将您导航到相应的地址。
 - 通过插件图标可以访问设置和更多选项。
 
+## 更新记录
+使用 `git checkout 版本号` 来切换不同版本（分支）。
+* main分支（1.0 版本）：支持 main 和 sepolia 两条链。
+* 2.0 版本：支持 26 条链。
+
+注：目前所有的链列表：
+[https://docs.web3url.io/web3-clients/https-gateway#w3link.io-all-blockchains-public-gateway](https://docs.web3url.io/web3-clients/https-gateway#w3link.io-all-blockchains-public-gateway
+)
+
 ## 贡献
 
 我们欢迎社区成员的贡献和反馈。如果你想贡献代码、提出问题或建议，请访问我们的 GitHub 仓库 [Web3URL](https://github.com/Whitehare2023/web3url)。
